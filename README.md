@@ -1,2 +1,2 @@
 # Xray-cmd
-command line tool for xray
+command line script for xray
