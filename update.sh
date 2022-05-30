@@ -1,3 +1,8 @@
+if [ `id -u` -ne 0 ]
+    then echo "please run as root"
+    exit
+fi
+
 cd /Applications/V2rayU.app/Contents/Resources/
 
 tag=`gh repo view XTLS/Xray-core --json latestRelease --jq .latestRelease.tagName`
