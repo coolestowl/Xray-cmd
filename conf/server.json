@@ -1,0 +1,98 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "dns": {
+        "servers": [
+            "1.1.1.1"
+        ],
+        "queryStrategy": "UseIPv4"
+    },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "domain": [
+                    "geosite:category-ads-all"
+                ],
+                "outboundTag": "block"
+            },
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:cn",
+                    "geoip:private"
+                ],
+                "outboundTag": "block"
+            }
+        ]
+    },
+    "inbounds": [
+        {
+            "port": 2333,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "xxxx",
+                        "level": 0
+                    }
+                ],
+                "decryption": "none",
+                "fallbacks": [
+                    {
+                        "dest": 80
+                    },
+                    {
+                        "path": "/ws-xxxx",
+                        "dest": 1234,
+                        "xver": 1
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                    "alpn": [
+                        "http/1.1"
+                    ],
+                    "certificates": [
+                        {
+                            "certificateFile": "/certs/fullchain.crt",
+                            "keyFile": "/certs/private.key"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "port": 1234,
+            "listen": "127.0.0.1",
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "xxxx",
+                        "level": 0
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none",
+                "wsSettings": {
+                    "acceptProxyProtocol": true,
+                    "path": "/ws-xxxx"
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom"
+        }
+    ]
+}

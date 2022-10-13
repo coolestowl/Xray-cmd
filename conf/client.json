@@ -1,0 +1,54 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "protocol": "socks",
+            "settings": {
+                "udp": false,
+                "auth": "noauth"
+            },
+            "port": "1080"
+        },
+        {
+            "listen": "0.0.0.0",
+            "protocol": "http",
+            "settings": {
+                "timeout": 360
+            },
+            "port": "1087"
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "xxxx",
+                        "port": 2333,
+                        "users": [
+                            {
+                                "id": "xxxx",
+                                "encryption": "none",
+                                "level": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "tls",
+                "tlsSettings": {
+                    "serverName": "xxxx"
+                },
+                "wsSettings": {
+                    "path": "/ws-xxxx"
+                }
+            }
+        }
+    ]
+}
