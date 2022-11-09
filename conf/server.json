@@ -92,7 +92,8 @@
     ],
     "outbounds": [
         {
-            "protocol": "freedom"
+            "tag": "block",
+            "protocol": "blackhole"
         }
     ]
 }
