@@ -30,34 +30,23 @@
     },
     "inbounds": [
         {
+            "listen": "0.0.0.0",
             "port": 2333,
             "protocol": "vless",
             "settings": {
                 "clients": [
                     {
                         "id": "xxxx",
-                        "level": 0
+                        "flow": "xtls-rprx-vision"
                     }
                 ],
-                "decryption": "none",
-                "fallbacks": [
-                    {
-                        "dest": 80
-                    },
-                    {
-                        "path": "/ws-xxxx",
-                        "dest": 1234,
-                        "xver": 1
-                    }
-                ]
+                "decryption": "none"
             },
             "streamSettings": {
                 "network": "tcp",
                 "security": "tls",
                 "tlsSettings": {
-                    "alpn": [
-                        "http/1.1"
-                    ],
+                    "rejectUnknownSni": true,
                     "certificates": [
                         {
                             "certificateFile": "/certs/fullchain.crt",
@@ -65,38 +54,24 @@
                         }
                     ]
                 }
-            }
-        },
-        {
-            "port": 1234,
-            "listen": "127.0.0.1",
-            "protocol": "vless",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "xxxx",
-                        "level": 0
-                    }
-                ],
-                "decryption": "none"
             },
-            "streamSettings": {
-                "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "acceptProxyProtocol": true,
-                    "path": "/ws-xxxx"
-                }
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
             }
         }
     ],
     "outbounds": [
         {
-            "protocol": "freedom"
+            "protocol": "freedom",
+            "tag": "direct"
         },
         {
-            "tag": "block",
-            "protocol": "blackhole"
+            "protocol": "blackhole",
+            "tag": "block"
         }
     ]
 }

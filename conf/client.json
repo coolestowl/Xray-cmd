@@ -2,23 +2,54 @@
     "log": {
         "loglevel": "warning"
     },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "domain": [
+                    "geosite:cn",
+                    "geosite:private"
+                ],
+                "outboundTag": "direct"
+            },
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:cn",
+                    "geoip:private"
+                ],
+                "outboundTag": "direct"
+            }
+        ]
+    },
     "inbounds": [
         {
             "listen": "0.0.0.0",
+            "port": 1080,
             "protocol": "socks",
             "settings": {
-                "udp": false,
-                "auth": "noauth"
+                "udp": true
             },
-            "port": "1080"
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
+            }
         },
         {
             "listen": "0.0.0.0",
+            "port": 1087,
             "protocol": "http",
-            "settings": {
-                "timeout": 360
-            },
-            "port": "1087"
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
+            }
         }
     ],
     "outbounds": [
@@ -33,22 +64,26 @@
                             {
                                 "id": "xxxx",
                                 "encryption": "none",
-                                "level": 0
+                                "flow": "xtls-rprx-vision"
                             }
                         ]
                     }
                 ]
             },
             "streamSettings": {
-                "network": "ws",
+                "network": "tcp",
                 "security": "tls",
                 "tlsSettings": {
-                    "serverName": "xxxx"
-                },
-                "wsSettings": {
-                    "path": "/ws-xxxx"
+                    "serverName": "xxxx",
+                    "allowInsecure": false,
+                    "fingerprint": "chrome"
                 }
-            }
+            },
+            "tag": "proxy"
+        },
+        {
+            "protocol": "freedom",
+            "tag": "direct"
         }
     ]
 }
