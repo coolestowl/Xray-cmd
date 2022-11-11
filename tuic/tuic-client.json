@@ -1,0 +1,25 @@
+{
+    "relay": {
+        "server": "xxxx",
+        "port": 443,
+        "token": "xxxx",
+
+        "ip": "xx.xx.xx.xx",
+        "certificates": ["/certs/hh.pem"],
+        "udp_relay_mode": "native",
+        "congestion_controller": "cubic",
+        "heartbeat_interval": 10000,
+        "alpn": ["h3"],
+        "disable_sni": false,
+        "reduce_rtt": false,
+        "request_timeout": 8000,
+        "max_udp_relay_packet_size": 1500
+    },
+    "local": {
+        "ip": "127.0.0.1",
+        "port": 2333,
+        "username": "SOCKS5_USERNAME",
+        "password": "SOCKS5_PASSWORD"
+    },
+    "log_level": "info"
+}
