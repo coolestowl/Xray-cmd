@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir -p /etc/systemd/system/ssh.socket.d
 cat > /etc/systemd/system/ssh.socket.d/listen.conf << EOF
 [Socket]
 ListenStream=
