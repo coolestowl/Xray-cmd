@@ -54,20 +54,32 @@
     ],
     "outbounds": [
         {
-            "protocol": "socks",
+            "protocol": "vless",
             "settings": {
-                "servers": [
+                "vnext": [
                     {
-                        "address": "127.0.0.1",
-                        "port": 2333,
-                        "users": [{
-                            "user": "SOCKS5_USERNAME",
-                            "pass": "SOCKS5_PASSWORD"
-                        }]
+                        "address": "my.domain.com",
+                        "port": "2333",
+                        "users": [
+                            {
+                                "id": "user-token",
+                                "encryption": "none",
+                                "flow": "xtls-rprx-vision"
+                            }
+                        ]
                     }
                 ]
             },
-            "tag": "tuic"
+            "streamSettings": {
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                    "serverName": "my.domain.com",
+                    "allowInsecure": false,
+                    "fingerprint": "chrome"
+                }
+            },
+            "tag": "proxy"
         },
         {
             "protocol": "freedom",

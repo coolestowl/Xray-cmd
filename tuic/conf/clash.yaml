@@ -1,5 +1,5 @@
 redir-port: 7892
-external-controller: 0.0.0.0:9090
+#external-controller: 0.0.0.0:9090
 
 allow-lan: true
 bind-address: 0.0.0.0

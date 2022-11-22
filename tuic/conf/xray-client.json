@@ -8,6 +8,13 @@
             {
                 "type": "field",
                 "domain": [
+                    "githubusercontent.com"
+                ],
+                "outboundTag": "tuic"
+            },
+            {
+                "type": "field",
+                "domain": [
                     "geosite:cn",
                     "geosite:private"
                 ],
@@ -54,32 +61,16 @@
     ],
     "outbounds": [
         {
-            "protocol": "vless",
+            "protocol": "socks",
             "settings": {
-                "vnext": [
+                "servers": [
                     {
-                        "address": "xxxx",
-                        "port": 2333,
-                        "users": [
-                            {
-                                "id": "xxxx",
-                                "encryption": "none",
-                                "flow": "xtls-rprx-vision"
-                            }
-                        ]
+                        "address": "127.0.0.1",
+                        "port": 2334
                     }
                 ]
             },
-            "streamSettings": {
-                "network": "tcp",
-                "security": "tls",
-                "tlsSettings": {
-                    "serverName": "xxxx",
-                    "allowInsecure": false,
-                    "fingerprint": "chrome"
-                }
-            },
-            "tag": "proxy"
+            "tag": "tuic"
         },
         {
             "protocol": "freedom",

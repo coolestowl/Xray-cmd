@@ -13,13 +13,6 @@
         "rules": [
             {
                 "type": "field",
-                "domain": [
-                    "geosite:category-ads-all"
-                ],
-                "outboundTag": "block"
-            },
-            {
-                "type": "field",
                 "ip": [
                     "geoip:cn",
                     "geoip:private"
@@ -31,12 +24,12 @@
     "inbounds": [
         {
             "listen": "0.0.0.0",
-            "port": 2333,
+            "port": "2333",
             "protocol": "vless",
             "settings": {
                 "clients": [
                     {
-                        "id": "xxxx",
+                        "id": "user-token",
                         "flow": "xtls-rprx-vision"
                     }
                 ],
@@ -49,8 +42,8 @@
                     "rejectUnknownSni": true,
                     "certificates": [
                         {
-                            "certificateFile": "/certs/fullchain.crt",
-                            "keyFile": "/certs/private.key"
+                            "certificateFile": "/path/to/cert.crt",
+                            "keyFile": "/path/to/key.key"
                         }
                     ]
                 }
