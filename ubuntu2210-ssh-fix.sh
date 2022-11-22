@@ -6,6 +6,6 @@ ListenStream=
 ListenStream=22
 EOF
 
-systemctl enable ssh.socket sshd.service
 systemctl daemon-reload
-systemctl start ssh.socket ssh.service
+systemctl restart ssh.socket ssh.service
+systemctl enable ssh.socket ssh.service
