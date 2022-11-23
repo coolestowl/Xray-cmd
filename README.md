@@ -12,5 +12,6 @@ Xray 相关的脚本。自从 mac 上的 V2rayU 停止了更新，似乎它检�
 - '1.2.3.4' => server ip
 - '2333' => service port
 - 'user-token' => user identity string
+- 'ws-path' => custom websocket path
 - '/path/to/cert.crt' => real .crt file path
 - '/path/to/key.key' => real .key file path
