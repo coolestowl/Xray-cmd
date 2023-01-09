@@ -1,0 +1,6 @@
+{
+    "listen": ":2333",
+    "cert": "/root/cert/hhh.crt",
+    "key": "/root/cert/key.key",
+    "obfs": "T9F1y0UaxK"
+}

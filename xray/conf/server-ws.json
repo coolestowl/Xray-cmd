@@ -13,11 +13,17 @@
         "rules": [
             {
                 "type": "field",
-                "ip": [
-                    "geoip:cn",
-                    "geoip:private"
+                "domain": [
+                    "geosite:cn"
                 ],
-                "outboundTag": "block"
+                "outboundTag": "warp"
+            },
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:cn"
+                ],
+                "outboundTag": "warp"
             }
         ]
     },
@@ -87,6 +93,19 @@
         {
             "protocol": "freedom",
             "tag": "direct"
+        },
+        {
+            "protocol": "wireguard",
+            "settings": {
+                "secretKey": "",
+                "peers": [
+                    {
+                        "publicKey": "",
+                        "endpoint": ""
+                    }
+                ]
+            },
+            "tag": "warp"
         },
         {
             "protocol": "blackhole",

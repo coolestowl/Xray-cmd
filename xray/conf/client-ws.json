@@ -8,18 +8,16 @@
             {
                 "type": "field",
                 "domain": [
-                    "geosite:cn",
-                    "geosite:private"
+                    "geosite:cn"
                 ],
-                "outboundTag": "direct"
+                "outboundTag": "warp"
             },
             {
                 "type": "field",
                 "ip": [
-                    "geoip:cn",
-                    "geoip:private"
+                    "geoip:cn"
                 ],
-                "outboundTag": "direct"
+                "outboundTag": "warp"
             }
         ]
     },
@@ -53,6 +51,24 @@
         }
     ],
     "outbounds": [
+        {
+            "protocol": "wireguard",
+            "settings": {
+                "secretKey": "",
+                "peers": [
+                    {
+                        "publicKey": "",
+                        "endpoint": ""
+                    }
+                ]
+            },
+            "streamSettings": {
+                "sockopt": {
+                    "dialerProxy": "proxy"
+                }
+            },
+            "tag": "warp"
+        },
         {
             "protocol": "vless",
             "settings": {

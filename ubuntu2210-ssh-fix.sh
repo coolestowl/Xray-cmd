@@ -3,10 +3,12 @@
 mkdir -p /etc/systemd/system/ssh.socket.d
 cat > /etc/systemd/system/ssh.socket.d/listen.conf << EOF
 [Socket]
-ListenStream=
-ListenStream=22
+ListenStream=2222
 EOF
 
+ufw delete allow 22/tcp
+ufw allow 2222/tcp
+
 systemctl daemon-reload
-systemctl restart ssh.socket ssh.service
 systemctl enable ssh.socket ssh.service
+reboot

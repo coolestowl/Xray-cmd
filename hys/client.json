@@ -1,0 +1,10 @@
+{
+    "server": "xxx.xxx.xxx:2333",
+    "obfs": "T9F1y0UaxK",
+    "up_mbps": 100,
+    "down_mbps": 300,
+    "ca": "/path/to/ca",
+    "socks5": {
+        "listen": "127.0.0.1:1080"
+    }
+}
