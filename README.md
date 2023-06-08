@@ -1,3 +1,7 @@
+# Archived
+
+use hysteria instead
+
 # Xray-cmd
 
 scripts for Xray. Since V2rayU on mac has stopped updating, it seems that it's function of checking for v2ray-core updates is also not working well, and since I didn't find a better alternative for the time being, I wrote a script to update Xray core manually.
